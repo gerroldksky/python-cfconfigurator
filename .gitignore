@@ -68,3 +68,4 @@ ENV/
 
 # Vagrant
 .vagrant/
+/.project
