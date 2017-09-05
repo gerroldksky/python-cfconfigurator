@@ -58,6 +58,7 @@ class CF(object):
     environment_variable_group_url = '/v2/config/environment_variable_groups'
     feature_flags_url = '/v2/config/feature_flags'
     quotas_url = '/v2/quota_definitions'
+    routes_url = '/v2/routes'
     shared_domains_url = '/v2/shared_domains'
     private_domains_url = '/v2/private_domains'
 
@@ -307,7 +308,11 @@ class CF(object):
             "app_instance_limit": app_instance_limit
         }
         return self._update(create, url, data)
-
+    
+    def search_route(self, name):
+        url = self.api_url + self.routes_url
+        params = {'q': "host:%s" % str(name) }
+        return self._search(url, params)
 
     def search_domain(self, name, kind="private"):
         if kind == "private":
